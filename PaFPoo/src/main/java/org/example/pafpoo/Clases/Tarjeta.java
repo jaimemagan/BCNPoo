@@ -10,6 +10,10 @@ public class Tarjeta {
     private String facilitador;
     private int idCliente;
 
+
+    public Tarjeta() {
+    }
+
     public Tarjeta(int idTarjeta, String numeroTarjeta, LocalDate fechaExpiracion, String tipoTarjeta, String facilitador, int idCliente) {
         this.idTarjeta = idTarjeta;
         this.numeroTarjeta = numeroTarjeta;

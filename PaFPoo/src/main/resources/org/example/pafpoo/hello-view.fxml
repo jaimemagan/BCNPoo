@@ -84,8 +84,6 @@
                 <RowConstraints />
             </rowConstraints>
         </GridPane>
-
-        <!-- Área de texto para mostrar los resultados de los reportes -->
-        <TextArea fx:id="resultArea" prefHeight="300" prefWidth="600" wrapText="true" />
+      <ListView prefHeight="262.0" prefWidth="1075.0" />
     </VBox>
 </AnchorPane>

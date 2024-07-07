@@ -9,6 +9,13 @@ public class Compra {
     private String descripcion;
     private int idTarjeta;
 
+
+
+    public Compra() {
+    }
+
+
+
     public Compra(int idCompra, LocalDateTime fechaCompra, float montoTotal, String descripcion, int idTarjeta) {
         this.idCompra = idCompra;
         this.fechaCompra = fechaCompra;
