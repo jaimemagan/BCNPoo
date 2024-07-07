@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="894.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pafpoo.HelloController">
+    <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
+    <VBox alignment="CENTER" prefHeight="874.0" prefWidth="1052.0" spacing="10">
+        <Label alignment="TOP_LEFT" text="Banco Central de Nlogonia - Sistema de Reportes" />
+
+        <!-- Reporte A -->
+        <Label text="Reporte A: Listar compras de un cliente en un periodo" />
+        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="clienteIdFieldA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Fecha Fin:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="generateReportAButton" onAction="#generateReportA" text="Generar Reporte A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <!-- Reporte B -->
+        <Label text="Reporte B: Total gastado por un cliente en un mes específico" />
+        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="clienteIdFieldB" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+            <TextField fx:id="monthField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+            <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Button fx:id="generateReportBButton" onAction="#generateReportB" text="Generar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <!-- Reporte C -->
+        <Label text="Reporte C: Listar todas las tarjetas de un cliente" />
+        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="clienteIdFieldC" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button fx:id="generateReportCButton" onAction="#generateReportC" text="Generar Reporte C" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <!-- Reporte D -->
+        <Label text="Reporte D: Clientes por facilitador de tarjeta" />
+        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+            <Label text="Facilitador:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+            <TextField fx:id="facilitadorField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+            <Button fx:id="generateReportDButton" onAction="#generateReportD" text="Generar Reporte D" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+
+        <!-- Área de texto para mostrar los resultados de los reportes -->
+        <TextArea fx:id="resultArea" prefHeight="300" prefWidth="600" wrapText="true" />
+    </VBox>
+</AnchorPane>
