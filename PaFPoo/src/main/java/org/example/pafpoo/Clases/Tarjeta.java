@@ -1,4 +1,4 @@
-package org.example.pafpoo.Clases;
+package org.example.parcialfinalpoo.Clases;
 
 import java.time.LocalDate;
 
@@ -6,15 +6,11 @@ public class Tarjeta {
     private int idTarjeta;
     private String numeroTarjeta;
     private LocalDate fechaExpiracion;
-    private String tipoTarjeta;
-    private String facilitador;
+    private TipoTarjeta tipoTarjeta;
+    private Facilitador facilitador;
     private int idCliente;
 
-
-    public Tarjeta() {
-    }
-
-    public Tarjeta(int idTarjeta, String numeroTarjeta, LocalDate fechaExpiracion, String tipoTarjeta, String facilitador, int idCliente) {
+    public Tarjeta(int idTarjeta, String numeroTarjeta, LocalDate fechaExpiracion, TipoTarjeta tipoTarjeta, Facilitador facilitador, int idCliente) {
         this.idTarjeta = idTarjeta;
         this.numeroTarjeta = numeroTarjeta;
         this.fechaExpiracion = fechaExpiracion;
@@ -47,19 +43,19 @@ public class Tarjeta {
         this.fechaExpiracion = fechaExpiracion;
     }
 
-    public String getTipoTarjeta() {
+    public TipoTarjeta getTipoTarjeta() {
         return tipoTarjeta;
     }
 
-    public void setTipoTarjeta(String tipoTarjeta) {
+    public void setTipoTarjeta(TipoTarjeta tipoTarjeta) {
         this.tipoTarjeta = tipoTarjeta;
     }
 
-    public String getFacilitador() {
+    public Facilitador getFacilitador() {
         return facilitador;
     }
 
-    public void setFacilitador(String facilitador) {
+    public void setFacilitador(Facilitador facilitador) {
         this.facilitador = facilitador;
     }
 

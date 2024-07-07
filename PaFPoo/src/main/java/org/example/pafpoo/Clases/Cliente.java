@@ -1,26 +1,24 @@
-package org.example.pafpoo.Clases;
+package org.example.parcialfinalpoo.Clases;
 
 public class Cliente {
-    private Long idCliente;
+    private int idCliente;
     private String nombreCompleto;
     private String direccion;
     private String telefono;
 
-    public Cliente() {
-    }
-
-    public Cliente(Long idCliente, String nombreCompleto, String direccion, String telefono) {
+    public Cliente(int idCliente, String nombreCompleto, String direccion, String telefono) {
         this.idCliente = idCliente;
         this.nombreCompleto = nombreCompleto;
         this.direccion = direccion;
         this.telefono = telefono;
     }
 
-    public Long getIdCliente() {
+
+    public int getIdCliente() {
         return idCliente;
     }
 
-    public void setIdCliente(Long idCliente) {
+    public void setIdCliente(int idCliente) {
         this.idCliente = idCliente;
     }
 
@@ -48,3 +46,6 @@ public class Cliente {
         this.telefono = telefono;
     }
 }
+
+
+
