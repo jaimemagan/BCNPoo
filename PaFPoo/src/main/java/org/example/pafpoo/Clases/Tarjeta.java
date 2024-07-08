@@ -6,7 +6,7 @@ public class Tarjeta {
     private int idTarjeta;
     private String numeroTarjeta;
     private LocalDate fechaExpiracion;
-    private int idTipoTarjeta;
+    private int idTipoTarjeta; // 1 para crédito, 2 para débito (suponiendo esta lógica)
     private int idFacilitador;
     private int idCliente;
 
@@ -70,8 +70,22 @@ public class Tarjeta {
         this.idCliente = idCliente;
     }
 
+    public String getTipo() {
+        if (idTipoTarjeta == 1) {
+            return "credito";
+        } else if (idTipoTarjeta == 2) {
+            return "debito";
+        }
+        return "desconocido";
+    }
+
+    public String getNumero() {
+        return numeroTarjeta;
+    }
+
     @Override
     public String toString() {
         return idTarjeta + " - " + numeroTarjeta;
     }
 }
+

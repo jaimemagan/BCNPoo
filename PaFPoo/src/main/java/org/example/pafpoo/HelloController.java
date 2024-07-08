@@ -4,6 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import org.example.pafpoo.Clases.Cliente;
 import org.example.pafpoo.ClasesCrud.ClienteCrud;
@@ -11,7 +12,6 @@ import org.example.pafpoo.ClasesCrud.CompraCrud;
 import org.example.pafpoo.ClasesCrud.TarjetaCrud;
 
 import java.io.IOException;
-import java.math.BigDecimal;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -29,7 +29,7 @@ public class HelloController {
     private DatePicker endDatePicker;
 
     @FXML
-    private TextField clienteIdFieldB;
+    private ComboBox<Cliente> clienteComboBoxB;
 
     @FXML
     private TextField monthField;
@@ -38,10 +38,13 @@ public class HelloController {
     private TextField yearField;
 
     @FXML
-    private TextField clienteIdFieldC;
+    private ComboBox<Cliente> clienteComboBoxC;
 
     @FXML
     private TextField facilitadorField;
+
+    @FXML
+    private ListView<String> listView;
 
     private final ClienteCrud clienteCrud = new ClienteCrud();
     private final CompraCrud compraCrud = new CompraCrud();
@@ -52,6 +55,8 @@ public class HelloController {
         try {
             List<Cliente> clientes = clienteCrud.obtenerTodosLosClientes();
             clienteComboBoxA.getItems().addAll(clientes);
+            clienteComboBoxB.getItems().addAll(clientes);
+            clienteComboBoxC.getItems().addAll(clientes);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +73,9 @@ public class HelloController {
             LocalDate startDate = startDatePicker.getValue();
             LocalDate endDate = endDatePicker.getValue();
 
-            ReportGenerator.generateReportA(clientId, Date.valueOf(startDate), Date.valueOf(endDate));
+            // Genera el reporte A y añade el resultado al ListView
+            List<String> reportAResults = ReportGenerator.generateReportA(clientId, Date.valueOf(startDate), Date.valueOf(endDate));
+            listView.getItems().setAll(reportAResults);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
@@ -76,11 +83,18 @@ public class HelloController {
 
     public void generateReportB(ActionEvent actionEvent) {
         try {
-            int clientId = Integer.parseInt(clienteIdFieldB.getText());
+            Cliente cliente = clienteComboBoxB.getValue();
+            if (cliente == null) {
+                System.out.println("Por favor, seleccione un cliente.");
+                return;
+            }
+            int clientId = cliente.getIdCliente().intValue();
             int month = Integer.parseInt(monthField.getText());
             int year = Integer.parseInt(yearField.getText());
 
-            ReportGenerator.generateReportB(clientId, month, year);
+            // Genera el reporte B y añade el resultado al ListView
+            List<String> reportBResults = ReportGenerator.generateReportB(clientId, month, year);
+            listView.getItems().setAll(reportBResults);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
@@ -88,9 +102,16 @@ public class HelloController {
 
     public void generateReportC(ActionEvent actionEvent) {
         try {
-            int clientId = Integer.parseInt(clienteIdFieldC.getText());
+            Cliente cliente = clienteComboBoxC.getValue();
+            if (cliente == null) {
+                System.out.println("Por favor, seleccione un cliente.");
+                return;
+            }
+            int clientId = cliente.getIdCliente().intValue();
 
-            ReportGenerator.generateReportC(clientId);
+            // Genera el reporte C y añade el resultado al ListView
+            List<String> reportCResults = ReportGenerator.generateReportC(clientId);
+            listView.getItems().setAll(reportCResults);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
@@ -100,7 +121,9 @@ public class HelloController {
         try {
             String facilitator = facilitadorField.getText();
 
-            ReportGenerator.generateReportD(facilitator);
+            // Genera el reporte D y añade el resultado al ListView
+            List<String> reportDResults = ReportGenerator.generateReportD(facilitator);
+            listView.getItems().setAll(reportDResults);
         } catch (SQLException | IOException e) {
             e.printStackTrace();
         }
