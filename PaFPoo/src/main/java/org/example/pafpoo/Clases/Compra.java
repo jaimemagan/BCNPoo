@@ -1,25 +1,22 @@
 package org.example.pafpoo.Clases;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class Compra {
     private int idCompra;
     private LocalDateTime fechaCompra;
-    private float montoTotal;
+    private BigDecimal montoGastado;
     private String descripcion;
     private int idTarjeta;
-
-
 
     public Compra() {
     }
 
-
-
-    public Compra(int idCompra, LocalDateTime fechaCompra, float montoTotal, String descripcion, int idTarjeta) {
+    public Compra(int idCompra, LocalDateTime fechaCompra, BigDecimal montoGastado, String descripcion, int idTarjeta) {
         this.idCompra = idCompra;
         this.fechaCompra = fechaCompra;
-        this.montoTotal = montoTotal;
+        this.montoGastado = montoGastado;
         this.descripcion = descripcion;
         this.idTarjeta = idTarjeta;
     }
@@ -40,12 +37,12 @@ public class Compra {
         this.fechaCompra = fechaCompra;
     }
 
-    public float getMontoTotal() {
-        return montoTotal;
+    public BigDecimal getMontoGastado() {
+        return montoGastado;
     }
 
-    public void setMontoTotal(float montoTotal) {
-        this.montoTotal = montoTotal;
+    public void setMontoGastado(BigDecimal montoGastado) {
+        this.montoGastado = montoGastado;
     }
 
     public String getDescripcion() {

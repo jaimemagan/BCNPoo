@@ -17,8 +17,11 @@ ext {
     junitVersion = '5.10.0'
 }
 
-sourceCompatibility = '19'
-targetCompatibility = '19'
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
 
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
@@ -35,6 +38,7 @@ javafx {
 }
 
 dependencies {
+    implementation files('jars/mysql-connector-j-8.4.0.jar')
     implementation('org.controlsfx:controlsfx:11.1.2')
     implementation('org.kordamp.bootstrapfx:bootstrapfx-core:0.4.0')
 
