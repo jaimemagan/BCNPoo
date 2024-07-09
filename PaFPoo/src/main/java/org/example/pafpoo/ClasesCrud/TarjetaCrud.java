@@ -1,95 +1,69 @@
 package org.example.pafpoo.ClasesCrud;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.example.pafpoo.Clases.Cliente;
 import org.example.pafpoo.Clases.Tarjeta;
 
 public class TarjetaCrud {
-    private final String url = "jdbc:mysql://localhost:3306/bcn?serverTimezone=UTC"; // URL de la base de datos
-    private final String user = "tu_usuario"; // Usuario de la base de datos
-    private final String password = "tu_contraseña"; // Contraseña de la base de datos
+    private final String url = "jdbc:mysql://localhost:3306/bcn?serverTimezone=UTC";
+    private final String user = "root";
+    private final String password = "Poo.012024";
 
-    // Método para crear una nueva tarjeta
     public void crearTarjeta(Tarjeta tarjeta) throws SQLException {
-        String sql = "INSERT INTO tarjeta (numeroTarjeta, fechaExpiracion, tipoTarjeta, facilitador, idCliente) VALUES (?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO tarjeta (numero_tarjeta, fecha_expiracion, id_tipo_tarjeta, id_facilitador, id_cliente) VALUES (?, ?, ?, ?, ?)";
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, tarjeta.getNumeroTarjeta()); // Asignar número de tarjeta
-            stmt.setDate(2, Date.valueOf(tarjeta.getFechaExpiracion())); // Asignar fecha de expiración
-            stmt.setString(3, tarjeta.getTipoTarjeta()); // Asignar tipo de tarjeta
-            stmt.setString(4, tarjeta.getFacilitador()); // Asignar facilitador
-            stmt.setInt(5, tarjeta.getIdCliente()); // Asignar ID del cliente
-            stmt.executeUpdate(); // Ejecutar la actualización
+            stmt.setString(1, tarjeta.getNumeroTarjeta());
+            stmt.setDate(2, Date.valueOf(tarjeta.getFechaExpiracion()));
+            stmt.setInt(3, tarjeta.getIdTipoTarjeta());
+            stmt.setInt(4, tarjeta.getIdFacilitador());
+            stmt.setInt(5, tarjeta.getIdCliente());
+            stmt.executeUpdate();
         }
     }
 
-    // Método para obtener una tarjeta por su ID
-    public Tarjeta obtenerTarjeta(int idTarjeta) throws SQLException {
-        String sql = "SELECT * FROM tarjeta WHERE idTarjeta = ?";
+    public List<Tarjeta> obtenerTarjetasPorCliente(int idCliente) throws SQLException {
+        List<Tarjeta> tarjetas = new ArrayList<>();
+        String sql = "SELECT * FROM tarjeta WHERE id_cliente = ?";
         try (Connection conn = DriverManager.getConnection(url, user, password);
              PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, idTarjeta); // Asignar ID de la tarjeta
-            try (ResultSet rs = stmt.executeQuery()) { // Ejecutar consulta
-                if (rs.next()) { // Sí hay resultado
+            stmt.setInt(1, idCliente);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
                     Tarjeta tarjeta = new Tarjeta();
-                    tarjeta.setIdTarjeta(rs.getInt("idTarjeta")); // Asignar ID de la tarjeta
-                    tarjeta.setNumeroTarjeta(rs.getString("numeroTarjeta")); // Asignar número de tarjeta
-                    tarjeta.setFechaExpiracion(rs.getDate("fechaExpiracion").toLocalDate()); // Asignar fecha de expiración
-                    tarjeta.setTipoTarjeta(rs.getString("tipoTarjeta")); // Asignar tipo de tarjeta
-                    tarjeta.setFacilitador(rs.getString("facilitador")); // Asignar facilitador
-                    tarjeta.setIdCliente(rs.getInt("idCliente")); // Asignar ID del cliente
-                    return tarjeta; // Devolver tarjeta
+                    tarjeta.setIdTarjeta(rs.getInt("id_tarjeta"));
+                    tarjeta.setNumeroTarjeta(rs.getString("numero_tarjeta"));
+                    tarjeta.setFechaExpiracion(rs.getDate("fecha_expiracion").toLocalDate());
+                    tarjeta.setIdTipoTarjeta(rs.getInt("id_tipo_tarjeta"));
+                    tarjeta.setIdFacilitador(rs.getInt("id_facilitador"));
+                    tarjeta.setIdCliente(rs.getInt("id_cliente"));
+                    tarjetas.add(tarjeta);
                 }
             }
         }
-        return null; // Devolver null si no se encuentra
+        return tarjetas;
     }
 
-    // Método para obtener todas las tarjetas
-    public List<Tarjeta> obtenerTodasLasTarjetas() throws SQLException {
-        List<Tarjeta> tarjetas = new ArrayList<>();
-        String sql = "SELECT * FROM tarjeta";
+    public List<Cliente> obtenerClientesPorFacilitador(int idFacilitador) throws SQLException {
+        List<Cliente> clientes = new ArrayList<>();
+        String sql = "SELECT DISTINCT c.* FROM cliente c JOIN tarjeta t ON c.id_cliente = t.id_cliente WHERE t.id_facilitador = ?";
         try (Connection conn = DriverManager.getConnection(url, user, password);
-             Statement stmt = conn.createStatement();
-             ResultSet rs = stmt.executeQuery(sql)) { // Ejecutar consulta
-            while (rs.next()) { // Mientras haya resultados
-                Tarjeta tarjeta = new Tarjeta();
-                tarjeta.setIdTarjeta(rs.getInt("idTarjeta")); // Asignar ID de la tarjeta
-                tarjeta.setNumeroTarjeta(rs.getString("numeroTarjeta")); // Asignar número de tarjeta
-                tarjeta.setFechaExpiracion(rs.getDate("fechaExpiracion").toLocalDate()); // Asignar fecha de expiración
-                tarjeta.setTipoTarjeta(rs.getString("tipoTarjeta")); // Asignar tipo de tarjeta
-                tarjeta.setFacilitador(rs.getString("facilitador")); // Asignar facilitador
-                tarjeta.setIdCliente(rs.getInt("idCliente")); // Asignar ID del cliente
-                tarjetas.add(tarjeta); // Añadir tarjeta a la lista
+             PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, idFacilitador);
+            try (ResultSet rs = stmt.executeQuery()) {
+                while (rs.next()) {
+                    Cliente cliente = new Cliente();
+                    cliente.setIdCliente(rs.getLong("id_cliente"));
+                    cliente.setNombreCompleto(rs.getString("nombre_completo"));
+                    cliente.setDireccion(rs.getString("direccion"));
+                    cliente.setTelefono(rs.getString("telefono"));
+                    clientes.add(cliente);
+                }
             }
         }
-        return tarjetas; // Devolver lista de tarjetas
-    }
-
-    // Método para actualizar una tarjeta
-    public void actualizarTarjeta(Tarjeta tarjeta) throws SQLException {
-        String sql = "UPDATE tarjeta SET numeroTarjeta = ?, fechaExpiracion = ?, tipoTarjeta = ?, facilitador = ?, idCliente = ? WHERE idTarjeta = ?";
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1, tarjeta.getNumeroTarjeta()); // Asignar número de tarjeta
-            stmt.setDate(2, Date.valueOf(tarjeta.getFechaExpiracion())); // Asignar fecha de expiración
-            stmt.setString(3, tarjeta.getTipoTarjeta()); // Asignar tipo de tarjeta
-            stmt.setString(4, tarjeta.getFacilitador()); // Asignar facilitador
-            stmt.setInt(5, tarjeta.getIdCliente()); // Asignar ID del cliente
-            stmt.setInt(6, tarjeta.getIdTarjeta()); // Asignar ID de la tarjeta
-            stmt.executeUpdate(); // Ejecutar actualización
-        }
-    }
-
-    // Método para eliminar una tarjeta
-    public void eliminarTarjeta(int idTarjeta) throws SQLException {
-        String sql = "DELETE FROM tarjeta WHERE idTarjeta = ?";
-        try (Connection conn = DriverManager.getConnection(url, user, password);
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, idTarjeta); // Asignar ID de la tarjeta
-            stmt.executeUpdate(); // Ejecutar eliminación
-        }
+        return clientes;
     }
 }

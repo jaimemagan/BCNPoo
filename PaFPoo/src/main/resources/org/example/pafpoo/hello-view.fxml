@@ -1,89 +1,149 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?> <!-- 00090322 Definición de la versión y codificación del archivo XML -->
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.*?> <!-- 00090322 Importación de clases para trabajar con geometría en JavaFX -->
+<?import javafx.scene.control.*?> <!-- 00090322 Importación de clases para controles de interfaz de usuario en JavaFX -->
+<?import javafx.scene.layout.*?> <!-- 00090322 Importación de clases para layouts en JavaFX -->
+<?import javafx.scene.text.*?> <!-- 00090322 Importación de clases para trabajar con texto en JavaFX -->
 
-<AnchorPane prefHeight="894.0" prefWidth="979.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pafpoo.HelloController">
-    <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
-    <VBox alignment="CENTER" prefHeight="874.0" prefWidth="1052.0" spacing="10">
-        <Label alignment="TOP_LEFT" text="Banco Central de Nlogonia - Sistema de Reportes" />
+<StackPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pafpoo.HelloController"> <!-- 00090322 Definición del StackPane principal y su controlador asociado -->
+    <children> <!-- 00090322 Definición del contenedor de los elementos hijos del StackPane -->
+        <!-- Pantalla de bienvenida -->
+        <AnchorPane fx:id="welcomeScreen" prefHeight="800.0" prefWidth="1400.0"> <!-- 00090322 Definición de la pantalla de bienvenida con tamaño preferido -->
+            <VBox alignment="CENTER" spacing="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"> <!-- 00090322 VBox centrado con espaciado de 20 píxeles y anclado en todos los bordes -->
+                <Label text="¡Bienvenido!" style="-fx-font-size: 24px;" /> <!-- 00090322 Etiqueta de bienvenida con tamaño de fuente definido -->
+                <Button text="Cliente" onAction="#showReportScreen" /> <!-- 00090322 Botón para mostrar la pantalla de reportes al hacer clic -->
+            </VBox>
+        </AnchorPane>
 
-        <!-- Reporte A -->
-        <Label text="Reporte A: Listar compras de un cliente en un periodo" />
-        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="clienteIdFieldA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Fecha Fin:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="generateReportAButton" onAction="#generateReportA" text="Generar Reporte A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
+        <!-- Pantalla de reportes -->
+        <AnchorPane fx:id="reportScreen" prefHeight="800.0" prefWidth="1400.0" visible="false"> <!-- 00090322 Definición de la pantalla de reportes con tamaño preferido y no visible por defecto -->
+            <VBox alignment="TOP_CENTER" spacing="20" prefHeight="780.0" prefWidth="1380.0"> <!-- 00090322 VBox centrado en la parte superior con espaciado de 20 píxeles y tamaño preferido -->
+                <Label text="Banco Central de Nlogonia - Sistema de Reportes"> <!-- 00090322 Etiqueta con el título del sistema de reportes -->
+                    <font> <!-- 00090322 Definición del estilo de la fuente para la etiqueta -->
+                        <Font name="System Bold" size="18.0" /> <!-- 00090322 Fuente en negrita con tamaño 18 -->
+                    </font>
+                </Label>
+                <!-- Botón para regresar al menú principal -->
+                <HBox alignment="TOP_RIGHT" spacing="10"> <!-- 00090322 HBox alineado a la derecha con espaciado de 10 píxeles -->
+                    <Button text="Regresar" onAction="#showWelcomeScreen" /> <!-- 00090322 Botón para regresar a la pantalla de bienvenida al hacer clic -->
+                    <Button text="Abrir carpeta de reportes" onAction="#showReportSelectionScreen" /> <!-- 00090322 Botón para mostrar la pantalla de selección de reportes al hacer clic -->
+                </HBox>
+                <!-- Espaciador debajo del título del banco -->
+                <Region prefHeight="20" /> <!-- 00090322 Espaciador de 20 píxeles de altura debajo del título -->
+                <VBox alignment="CENTER" spacing="20"> <!-- 00090322 VBox centrado con espaciado de 20 píxeles -->
+                    <GridPane alignment="CENTER" hgap="20" vgap="20"> <!-- 00090322 GridPane centrado con espacio horizontal y vertical de 20 píxeles -->
+                        <!-- Reporte A -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10"> <!-- 00090322 VBox en la primera columna y fila con espaciado de 10 píxeles -->
+                            <Label text="Reporte A: Listar compras de un cliente en un periodo" /> <!-- 00090322 Etiqueta para el título del Reporte A -->
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10"> <!-- 00090322 GridPane centrado en la parte superior con espacio horizontal y vertical de 10 píxeles -->
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" /> <!-- 00090322 Etiqueta para el ID del cliente en la primera columna y fila -->
+                                <ComboBox fx:id="clienteComboBoxA" GridPane.columnIndex="1" GridPane.rowIndex="0" /> <!-- 00090322 ComboBox para seleccionar el ID del cliente en la segunda columna y primera fila -->
+                                <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" /> <!-- 00090322 Etiqueta para la fecha de inicio en la primera columna y segunda fila -->
+                                <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" /> <!-- 00090322 Selector de fecha para la fecha de inicio en la segunda columna y segunda fila -->
+                                <Label text="Fecha Fin:" GridPane.columnIndex="0" GridPane.rowIndex="2" /> <!-- 00090322 Etiqueta para la fecha de fin en la primera columna y tercera fila -->
+                                <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" /> <!-- 00090322 Selector de fecha para la fecha de fin en la segunda columna y tercera fila -->
+                                <Button fx:id="generateReportAButton" onAction="#generateReportA" text="Generar Reporte A" GridPane.columnIndex="1" GridPane.rowIndex="3" /> <!-- 00090322 Botón para generar el Reporte A en la segunda columna y cuarta fila -->
+                                <columnConstraints> <!-- 00090322 Definición de las restricciones de las columnas -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la primera columna -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la segunda columna -->
+                                </columnConstraints>
+                                <rowConstraints> <!-- 00090322 Definición de las restricciones de las filas -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la primera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la segunda fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la tercera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la cuarta fila -->
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
 
-        <!-- Reporte B -->
-        <Label text="Reporte B: Total gastado por un cliente en un mes específico" />
-        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="clienteIdFieldB" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-            <TextField fx:id="monthField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-            <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Button fx:id="generateReportBButton" onAction="#generateReportB" text="Generar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
+                        <!-- Reporte B -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="10"> <!-- 00090322 VBox en la segunda columna y primera fila con espaciado de 10 píxeles -->
+                            <Label text="Reporte B: Total gastado por un cliente en un mes específico" /> <!-- 00090322 Etiqueta para el título del Reporte B -->
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10"> <!-- 00090322 GridPane centrado en la parte superior con espacio horizontal y vertical de 10 píxeles -->
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" /> <!-- 00090322 Etiqueta para el ID del cliente en la primera columna y fila -->
+                                <ComboBox fx:id="clienteComboBoxB" GridPane.columnIndex="1" GridPane.rowIndex="0" /> <!-- 00090322 ComboBox para seleccionar el ID del cliente en la segunda columna y primera fila -->
+                                <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" /> <!-- 00090322 Etiqueta para el mes en la primera columna y segunda fila -->
+                                <TextField fx:id="monthField" GridPane.columnIndex="1" GridPane.rowIndex="1" /> <!-- 00090322 Campo de texto para ingresar el mes en la segunda columna y segunda fila -->
+                                <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" /> <!-- 00090322 Etiqueta para el año en la primera columna y tercera fila -->
+                                <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="2" /> <!-- 00090322 Campo de texto para ingresar el año en la segunda columna y tercera fila -->
+                                <Button fx:id="generateReportBButton" onAction="#generateReportB" text="Generar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" /> <!-- 00090322 Botón para generar el Reporte B en la segunda columna y cuarta fila -->
+                                <columnConstraints> <!-- 00090322 Definición de las restricciones de las columnas -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la primera columna -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la segunda columna -->
+                                </columnConstraints>
+                                <rowConstraints> <!-- 00090322 Definición de las restricciones de las filas -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la primera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la segunda fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la tercera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la cuarta fila -->
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
 
-        <!-- Reporte C -->
-        <Label text="Reporte C: Listar todas las tarjetas de un cliente" />
-        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-            <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="clienteIdFieldC" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Button fx:id="generateReportCButton" onAction="#generateReportC" text="Generar Reporte C" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
+                        <!-- Espacio entre filas -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="10"> <!-- 00090322 VBox en la primera columna y segunda fila con espaciado de 10 píxeles -->
+                            <Label text="" /> <!-- 00090322 Etiqueta vacía para crear espacio entre filas -->
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="10"> <!-- 00090322 VBox en la segunda columna y segunda fila con espaciado de 10 píxeles -->
+                            <Label text="" /> <!-- 00090322 Etiqueta vacía para crear espacio entre filas -->
+                        </VBox>
 
-        <!-- Reporte D -->
-        <Label text="Reporte D: Clientes por facilitador de tarjeta" />
-        <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-            <Label text="Facilitador:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-            <TextField fx:id="facilitadorField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-            <Button fx:id="generateReportDButton" onAction="#generateReportD" text="Generar Reporte D" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-      <ListView prefHeight="262.0" prefWidth="1075.0" />
-    </VBox>
-</AnchorPane>
+                        <!-- Reporte C -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="10"> <!-- 00090322 VBox en la primera columna y tercera fila con espaciado de 10 píxeles -->
+                            <Label text="Reporte C: Listar todas las tarjetas de un cliente" /> <!-- 00090322 Etiqueta para el título del Reporte C -->
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10"> <!-- 00090322 GridPane centrado en la parte superior con espacio horizontal y vertical de 10 píxeles -->
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" /> <!-- 00090322 Etiqueta para el ID del cliente en la primera columna y fila -->
+                                <ComboBox fx:id="clienteComboBoxC" GridPane.columnIndex="1" GridPane.rowIndex="0" /> <!-- 00090322 ComboBox para seleccionar el ID del cliente en la segunda columna y primera fila -->
+                                <Button fx:id="generateReportCButton" onAction="#generateReportC" text="Generar Reporte C" GridPane.columnIndex="1" GridPane.rowIndex="1" /> <!-- 00090322 Botón para generar el Reporte C en la segunda columna y segunda fila -->
+                                <columnConstraints> <!-- 00090322 Definición de las restricciones de las columnas -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la primera columna -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la segunda columna -->
+                                </columnConstraints>
+                                <rowConstraints> <!-- 00090322 Definición de las restricciones de las filas -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la primera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la segunda fila -->
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Reporte D -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="10"> <!-- 00090322 VBox en la segunda columna y tercera fila con espaciado de 10 píxeles -->
+                            <Label text="Reporte D: Clientes por facilitador de tarjeta" /> <!-- 00090322 Etiqueta para el título del Reporte D -->
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10"> <!-- 00090322 GridPane centrado en la parte superior con espacio horizontal y vertical de 10 píxeles -->
+                                <Label text="Facilitador:" GridPane.columnIndex="0" GridPane.rowIndex="0" /> <!-- 00090322 Etiqueta para el facilitador en la primera columna y fila -->
+                                <TextField fx:id="facilitadorField" GridPane.columnIndex="1" GridPane.rowIndex="0" /> <!-- 00090322 Campo de texto para ingresar el facilitador en la segunda columna y primera fila -->
+                                <Button fx:id="generateReportDButton" onAction="#generateReportD" text="Generar Reporte D" GridPane.columnIndex="1" GridPane.rowIndex="1" /> <!-- 00090322 Botón para generar el Reporte D en la segunda columna y segunda fila -->
+                                <columnConstraints> <!-- 00090322 Definición de las restricciones de las columnas -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la primera columna -->
+                                    <ColumnConstraints /> <!-- 00090322 Restricciones para la segunda columna -->
+                                </columnConstraints>
+                                <rowConstraints> <!-- 00090322 Definición de las restricciones de las filas -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la primera fila -->
+                                    <RowConstraints /> <!-- 00090322 Restricciones para la segunda fila -->
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
+                    </GridPane>
+
+                    <!-- Espaciador -->
+                    <Region VBox.vgrow="ALWAYS" /> <!-- 00090322 Espaciador que crece verticalmente dentro del VBox -->
+
+                    <!-- ListView -->
+                    <ListView fx:id="listView" VBox.vgrow="ALWAYS" /> <!-- 00090322 ListView que crece verticalmente dentro del VBox -->
+                </VBox>
+            </VBox>
+        </AnchorPane>
+
+        <!-- Pantalla de selección de reportes -->
+        <AnchorPane fx:id="reportSelectionScreen" prefHeight="800.0" prefWidth="1400.0" visible="false"> <!-- 00090322 Definición de la pantalla de selección de reportes con tamaño preferido y no visible por defecto -->
+            <VBox alignment="CENTER" spacing="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0"> <!-- 00090322 VBox centrado con espaciado de 20 píxeles y anclado en todos los bordes -->
+                <Label text="Selecciona el reporte que deseas ver" style="-fx-font-size: 24px;" /> <!-- 00090322 Etiqueta con el texto para seleccionar un reporte y tamaño de fuente definido -->
+                <Button text="Reporte A" onAction="#openReportA" /> <!-- 00090322 Botón para abrir el Reporte A al hacer clic -->
+                <Button text="Reporte B" onAction="#openReportB" /> <!-- 00090322 Botón para abrir el Reporte B al hacer clic -->
+                <Button text="Reporte C" onAction="#openReportC" /> <!-- 00090322 Botón para abrir el Reporte C al hacer clic -->
+                <Button text="Reporte D" onAction="#openReportD" /> <!-- 00090322 Botón para abrir el Reporte D al hacer clic -->
+                <Button text="Regresar" onAction="#showReportScreen" /> <!-- 00090322 Botón para regresar a la pantalla de reportes al hacer clic -->
+            </VBox>
+        </AnchorPane>
+    </children>
+</StackPane> <!-- 00090322 Fin del StackPane principal -->
