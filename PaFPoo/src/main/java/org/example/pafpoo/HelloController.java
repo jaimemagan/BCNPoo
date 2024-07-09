@@ -6,6 +6,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import org.example.pafpoo.Clases.Cliente;
 import org.example.pafpoo.ClasesCrud.ClienteCrud;
 import org.example.pafpoo.ClasesCrud.CompraCrud;
@@ -18,6 +19,12 @@ import java.time.LocalDate;
 import java.util.List;
 
 public class HelloController {
+
+    @FXML
+    private AnchorPane welcomeScreen;
+
+    @FXML
+    private AnchorPane reportScreen;
 
     @FXML
     private ComboBox<Cliente> clienteComboBoxA;
@@ -60,6 +67,23 @@ public class HelloController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @FXML
+    private void showReportScreen() {
+        welcomeScreen.setVisible(false);
+        reportScreen.setVisible(true);
+    }
+
+    @FXML
+    private void showServiceScreen() {
+        // Implementa la lógica para mostrar la pantalla de servicio si tienes una
+    }
+
+    @FXML
+    private void showWelcomeScreen() {
+        reportScreen.setVisible(false);
+        welcomeScreen.setVisible(true);
     }
 
     public void generateReportA(ActionEvent actionEvent) {

@@ -5,116 +5,133 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pafpoo.HelloController">
-    <padding><Insets bottom="10" left="10" right="10" top="10" /></padding>
-    <VBox alignment="TOP_CENTER" spacing="20" prefHeight="780.0" prefWidth="1380.0">
-        <Label text="Banco Central de Nlogonia - Sistema de Reportes">
-            <font>
-                <Font name="System Bold" size="18.0" />
-            </font>
-        </Label>
-        <!-- Espaciador debajo del título del banco -->
-        <Region prefHeight="20" />
-        <VBox alignment="CENTER" spacing="20">
-            <GridPane alignment="CENTER" hgap="20" vgap="20">
-                <!-- Reporte A -->
-                <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
-                    <Label text="Reporte A: Listar compras de un cliente en un periodo" />
-                    <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-                        <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <ComboBox fx:id="clienteComboBoxA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                        <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Fecha Fin:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="generateReportAButton" onAction="#generateReportA" text="Generar Reporte A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <columnConstraints>
-                            <ColumnConstraints />
-                            <ColumnConstraints />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                        </rowConstraints>
+<StackPane xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.pafpoo.HelloController">
+    <children>
+        <!-- Pantalla de bienvenida -->
+        <AnchorPane fx:id="welcomeScreen" prefHeight="800.0" prefWidth="1400.0">
+            <VBox alignment="CENTER" spacing="20.0" AnchorPane.topAnchor="0.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                <Label text="¡Bienvenido!" style="-fx-font-size: 24px;" />
+                <Button text="Cliente" onAction="#showReportScreen" />
+            </VBox>
+        </AnchorPane>
+
+        <!-- Pantalla de reportes -->
+        <AnchorPane fx:id="reportScreen" prefHeight="800.0" prefWidth="1400.0" visible="false">
+            <VBox alignment="TOP_CENTER" spacing="20" prefHeight="780.0" prefWidth="1380.0">
+                <Label text="Banco Central de Nlogonia - Sistema de Reportes">
+                    <font>
+                        <Font name="System Bold" size="18.0" />
+                    </font>
+                </Label>
+                <!-- Botón para regresar al menú principal -->
+                <HBox alignment="TOP_RIGHT">
+                    <Button text="Regresar" onAction="#showWelcomeScreen" />
+                </HBox>
+                <!-- Espaciador debajo del título del banco -->
+                <Region prefHeight="20" />
+                <VBox alignment="CENTER" spacing="20">
+                    <GridPane alignment="CENTER" hgap="20" vgap="20">
+                        <!-- Reporte A -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="0" spacing="10">
+                            <Label text="Reporte A: Listar compras de un cliente en un periodo" />
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="clienteComboBoxA" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Fecha Inicio:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <DatePicker fx:id="startDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Fecha Fin:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <DatePicker fx:id="endDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Button fx:id="generateReportAButton" onAction="#generateReportA" text="Generar Reporte A" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <columnConstraints>
+                                    <ColumnConstraints />
+                                    <ColumnConstraints />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Reporte B -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="10">
+                            <Label text="Reporte B: Total gastado por un cliente en un mes específico" />
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="clienteComboBoxB" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                                <TextField fx:id="monthField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                                <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                <Button fx:id="generateReportBButton" onAction="#generateReportB" text="Generar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                <columnConstraints>
+                                    <ColumnConstraints />
+                                    <ColumnConstraints />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Espacio entre filas -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="10">
+                            <Label text="" />
+                        </VBox>
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="10">
+                            <Label text="" />
+                        </VBox>
+
+                        <!-- Reporte C -->
+                        <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="10">
+                            <Label text="Reporte C: Listar todas las tarjetas de un cliente" />
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+                                <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <ComboBox fx:id="clienteComboBoxC" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Button fx:id="generateReportCButton" onAction="#generateReportC" text="Generar Reporte C" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <columnConstraints>
+                                    <ColumnConstraints />
+                                    <ColumnConstraints />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
+
+                        <!-- Reporte D -->
+                        <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="10">
+                            <Label text="Reporte D: Clientes por facilitador de tarjeta" />
+                            <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
+                                <Label text="Facilitador:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                                <TextField fx:id="facilitadorField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                                <Button fx:id="generateReportDButton" onAction="#generateReportD" text="Generar Reporte D" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                <columnConstraints>
+                                    <ColumnConstraints />
+                                    <ColumnConstraints />
+                                </columnConstraints>
+                                <rowConstraints>
+                                    <RowConstraints />
+                                    <RowConstraints />
+                                </rowConstraints>
+                            </GridPane>
+                        </VBox>
                     </GridPane>
-                </VBox>
 
-                <!-- Reporte B -->
-                <VBox GridPane.columnIndex="1" GridPane.rowIndex="0" spacing="10">
-                    <Label text="Reporte B: Total gastado por un cliente en un mes específico" />
-                    <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-                        <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <ComboBox fx:id="clienteComboBoxB" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Label text="Mes:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                        <TextField fx:id="monthField" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <Label text="Año:" GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <TextField fx:id="yearField" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                        <Button fx:id="generateReportBButton" onAction="#generateReportB" text="Generar Reporte B" GridPane.columnIndex="1" GridPane.rowIndex="3" />
-                        <columnConstraints>
-                            <ColumnConstraints />
-                            <ColumnConstraints />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                            <RowConstraints />
-                        </rowConstraints>
-                    </GridPane>
-                </VBox>
+                    <!-- Espaciador -->
+                    <Region VBox.vgrow="ALWAYS" />
 
-                <!-- Espacio entre filas -->
-                <VBox GridPane.columnIndex="0" GridPane.rowIndex="1" spacing="10">
-                    <Label text="" />
+                    <!-- ListView -->
+                    <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
                 </VBox>
-                <VBox GridPane.columnIndex="1" GridPane.rowIndex="1" spacing="10">
-                    <Label text="" />
-                </VBox>
+            </VBox>
+        </AnchorPane>
+    </children>
+</StackPane>
 
-                <!-- Reporte C -->
-                <VBox GridPane.columnIndex="0" GridPane.rowIndex="2" spacing="10">
-                    <Label text="Reporte C: Listar todas las tarjetas de un cliente" />
-                    <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-                        <Label text="ID Cliente:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <ComboBox fx:id="clienteComboBoxC" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Button fx:id="generateReportCButton" onAction="#generateReportC" text="Generar Reporte C" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <columnConstraints>
-                            <ColumnConstraints />
-                            <ColumnConstraints />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                        </rowConstraints>
-                    </GridPane>
-                </VBox>
-
-                <!-- Reporte D -->
-                <VBox GridPane.columnIndex="1" GridPane.rowIndex="2" spacing="10">
-                    <Label text="Reporte D: Clientes por facilitador de tarjeta" />
-                    <GridPane alignment="TOP_CENTER" hgap="10" vgap="10">
-                        <Label text="Facilitador:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <TextField fx:id="facilitadorField" GridPane.columnIndex="1" GridPane.rowIndex="0" />
-                        <Button fx:id="generateReportDButton" onAction="#generateReportD" text="Generar Reporte D" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                        <columnConstraints>
-                            <ColumnConstraints />
-                            <ColumnConstraints />
-                        </columnConstraints>
-                        <rowConstraints>
-                            <RowConstraints />
-                            <RowConstraints />
-                        </rowConstraints>
-                    </GridPane>
-                </VBox>
-            </GridPane>
-
-            <!-- Espaciador -->
-            <Region VBox.vgrow="ALWAYS" />
-
-            <!-- ListView -->
-            <ListView fx:id="listView" VBox.vgrow="ALWAYS" />
-        </VBox>
-    </VBox>
-</AnchorPane>
