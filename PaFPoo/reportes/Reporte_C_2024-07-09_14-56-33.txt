@@ -1,8 +1,9 @@
 Reporte C: Listar todas las tarjetas de un cliente
-Cliente ID: 1
+Cliente ID: 10
 -----------------------------------------------------
 Tarjetas de crédito:
-XXXX XXXX XXXX 5678
-XXXX XXXX XXXX 1234
-Tarjetas de Débito:
 N/A (No cuenta con tarjetas de este tipo)
+Tarjetas de Débito:
+XXXX XXXX XXXX 7894
+XXXX XXXX XXXX 1247
+XXXX XXXX XXXX 7845
