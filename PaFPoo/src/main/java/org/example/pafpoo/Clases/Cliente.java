@@ -24,19 +24,13 @@ public class Cliente { //00218721 Clase que representa un cliente
 
     public String getNombreCompleto() { return nombreCompleto;} // 00218721 Método que obtiene el nombre completo del cliente
 
-    public void setNombreCompleto(String nombreCompleto) { // Método que asigna el nombre completo del cliente
-        this.nombreCompleto = nombreCompleto;
-    }
+    public void setNombreCompleto(String nombreCompleto) { this.nombreCompleto = nombreCompleto; }// Método que asigna el nombre completo del cliente
 
-    public String getDireccion() {
-        return direccion;
-    } //00218721 Método que obtiene la direccion del cliente
+    public String getDireccion() { return direccion;} //00218721 Método que obtiene la direccion del cliente
 
     public void setDireccion(String direccion) { this.direccion = direccion; } // 00218721 Método que asigna la direccion
 
-    public String getTelefono() {
-        return telefono;
-    } // 00218721 Método que obtiene el número de Teléfono
+    public String getTelefono() { return telefono;} // 00218721 Método que obtiene el número de Teléfono
 
     public void setTelefono(String telefono) { this.telefono = telefono;} // 00218721 Método que asigna el numero de teléfono
 
