@@ -1,0 +1,4 @@
+Reporte A: Listar compras de un cliente en un periodo
+Cliente ID: 1
+Periodo: 2023-01-01 - 2023-12-31
+-----------------------------------------------------

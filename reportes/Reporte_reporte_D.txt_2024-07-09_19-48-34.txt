@@ -1,0 +1,9 @@
+Reporte D: Clientes por facilitador de tarjeta
+Facilitador: VISA
+-----------------------------------------------------
+1 - Oscar fernando Sanchez Lopez
+7 - Carlos Santiago Juarez
+16 - Jamie Santiago Rutherford Chavez
+17 - Juan Alejandro Morales Bode
+18 - Joel Henry Hamill Smith
+20 - Leslie Sofia Lockman

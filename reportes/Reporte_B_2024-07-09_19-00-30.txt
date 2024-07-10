@@ -1,0 +1,4 @@
+Reporte B: Total gastado por un cliente en un mes específico
+Cliente ID: 6
+Mes: 5, Año: 2024
+Total gastado: null

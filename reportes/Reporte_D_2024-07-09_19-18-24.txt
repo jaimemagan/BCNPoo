@@ -1,0 +1,10 @@
+Reporte D: Clientes por facilitador de tarjeta
+Facilitador: MASTERCARD
+-----------------------------------------------------
+2 - Sofia Fernanda Carranza Perez
+3 - Pedro Eduardo Chavez Represa
+5 - Jonathan Antonio Rivas Serrano
+9 - Josue Eduardo Quintanilla Lopez
+10 - Xionara Sarai Henriquez Orellana
+12 - Rick Jose Wilderman Perez 
+14 - Velma Maria Wilderman Morales
