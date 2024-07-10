@@ -7,7 +7,7 @@ import java.sql.SQLException; // Importa la clase SQLException de java.sql para 
 public class DatabaseConnection { // Define la clase DatabaseConnection
     private static final String URL = "jdbc:mysql://localhost:3306/BCN";  // Declara y asigna la URL de conexión a la base de datos, incluyendo el puerto y el nombre de la base de datos
     private static final String USER = "root";  // Declara y asigna el usuario de la base de datos
-    private static final String PASSWORD = "Poo.012024";  // Declara y asigna la contraseña de la base de datos
+    private static final String PASSWORD = "madafakA23";  // Declara y asigna la contraseña de la base de datos
 
     public static Connection getConnection() { // Define un método estático para obtener la conexión a la base de datos
         Connection connection = null; // Declara una variable de tipo Connection e inicialízala en null

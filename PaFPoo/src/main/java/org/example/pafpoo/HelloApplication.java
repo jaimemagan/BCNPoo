@@ -57,7 +57,7 @@ public class HelloApplication extends Application { // 00090322 Define la clase 
             ReportGenerator.saveReportToFile(reportC, "reporte_C.txt"); // 00090322 Guarda el Reporte C en un archivo
 
             // 00090322 Generar y guardar el Reporte D
-            String facilitator = "Facilitador1"; // 00090322 Reemplazar con el nombre adecuado del facilitador
+            String facilitator = "VISA"; // 00090322 Reemplazar con el nombre adecuado del facilitador
             List<String> reportD = ReportGenerator.generateReportD(facilitator); // 00090322 Genera el Reporte D
             ReportGenerator.saveReportToFile(reportD, "reporte_D.txt"); // 00090322 Guarda el Reporte D en un archivo
         } catch (SQLException | IOException e) { // 00090322 Captura las excepciones SQLException e IOException
